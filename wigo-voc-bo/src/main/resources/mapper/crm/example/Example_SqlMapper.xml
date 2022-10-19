@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wigo.voc.example.dao.ExampleDao">
+    <sql id="sqlPkConditions">
+                WHERE MENU_CD           =       #{menuCd}
+    </sql>
+    <sql id="sqlCols">
+                      MENU_CD                    /*메뉴코드        */
+                    , MENU_NM                    /*메뉴명        */
+                    , MENU_URL                    /*메뉴주소        */
+                    , UPR_MENU_CD                    /*상위메뉴코드        */
+                    , RT_MENU_CD                    /*1단계메뉴코드        */
+                    , MENU_LEVEL                    /*메뉴레벨        */
+                    , MENU_SEQ                    /*메뉴순번        */
+                    , MENU_SHOW_YN                    /*메뉴보이기        */
+                    , MENU_ICON                    /*메뉴아이콘        */
+                    , MENU_AUTH_YN                    /*권한체크        */
+                    , MENU_POPUP_YN                    /*팝업메뉴여부        */
+                    , MENU_POPUP_WDTH                    /*팝업 너비        */
+                    , MENU_POPUP_HGHT                    /*팝업 높이        */
+                    , USE_YN                    /*사용여부        */
+                    , REGR_ID                    /*입력자        */
+                    , REG_DT                    /*입력일        */
+                    , AMDR_ID                    /*수정자        */
+                    , AMD_DT                    /*수정일        */
+                    , SQL_LOG_YN                    /*로그저장여부        */
+                    , MENU_MEMO                    /*MENU_MEMO        */
+    </sql>
+    <sql id="sqlConditions">
+                WHERE 1 = 1
+        <if test="menuCd != null and menuCd != ''">
+            <choose>
+                <when test="menuCd instanceof String">
+                              AND MENU_CD           =       #{menuCd}
+                </when>
+                <otherwise>
+                    AND MENU_CD           IN
+                    <foreach item="item" index="index" collection="menuCd" open="(" separator="," close=")">
+                        #{item}
+                    </foreach>
+                </otherwise>
+            </choose>
+        </if>
+        <if test="menuNm != null and menuNm != ''">
+                      AND MENU_NM           =       #{menuNm}
+        </if>
+        <if test="menuUrl != null and menuUrl != ''">
+                      AND MENU_URL          =       #{menuUrl}
+        </if>
+        <if test="uprMenuCd != null and uprMenuCd != ''">
+            <choose>
+                <when test="uprMenuCd instanceof String">
+                              AND UPR_MENU_CD       =       #{uprMenuCd}
+                </when>
+                <otherwise>
+                    AND UPR_MENU_CD       IN
+                    <foreach item="item" index="index" collection="uprMenuCd" open="(" separator="," close=")">
+                        #{item}
+                    </foreach>
+                </otherwise>
+            </choose>
+        </if>
+        <if test="rtMenuCd != null and rtMenuCd != ''">
+            <choose>
+                <when test="rtMenuCd instanceof String">
+                              AND RT_MENU_CD        =       #{rtMenuCd}
+                </when>
+                <otherwise>
+                    AND RT_MENU_CD        IN
+                    <foreach item="item" index="index" collection="rtMenuCd" open="(" separator="," close=")">
+                        #{item}
+                    </foreach>
+                </otherwise>
+            </choose>
+        </if>
+        <if test="menuLevel != null and menuLevel != ''">
+                      AND MENU_LEVEL        =       #{menuLevel}
+        </if>
+        <if test="menuSeq != null and menuSeq != ''">
+                      AND MENU_SEQ          =       #{menuSeq}
+        </if>
+        <if test="menuShowYn != null and menuShowYn != ''">
+                      AND MENU_SHOW_YN      =       #{menuShowYn}
+        </if>
+        <if test="menuIcon != null and menuIcon != ''">
+                      AND MENU_ICON         =       #{menuIcon}
+        </if>
+        <if test="menuAuthYn != null and menuAuthYn != ''">
+                      AND MENU_AUTH_YN      =       #{menuAuthYn}
+        </if>
+        <if test="menuPopupYn != null and menuPopupYn != ''">
+                      AND MENU_POPUP_YN     =       #{menuPopupYn}
+        </if>
+        <if test="menuPopupWdth != null and menuPopupWdth != ''">
+                      AND MENU_POPUP_WDTH   =       #{menuPopupWdth}
+        </if>
+        <if test="menuPopupHght != null and menuPopupHght != ''">
+                      AND MENU_POPUP_HGHT   =       #{menuPopupHght}
+        </if>
+        <if test="useYn != null and useYn != ''">
+                      AND USE_YN            =       #{useYn}
+        </if>
+        <if test="sqlLogYn != null and sqlLogYn != ''">
+                      AND SQL_LOG_YN        =       #{sqlLogYn}
+        </if>
+        <if test="menuMemo != null and menuMemo != ''">
+                      AND MENU_MEMO         =       #{menuMemo}
+        </if>
+    </sql>
+    <select id="selectListCount" resultType="int">
+                SELECT COUNT(1)
+                 FROM TCMN_MENU
+        <include refid="sqlConditions"/>
+    </select>
+    <select id="selectList" resultType="com.wigo.voc.example.model.ExampleVo">
+        <include refid="com.wigo.voc.sys.dao.CrmCommonDao.pagingHeader"/>
+               SELECT <include refid="sqlCols"/>
+                 FROM TCMN_MENU
+        <include refid="sqlConditions"/>
+               ORDER BY REG_DT DESC
+        <include refid="com.wigo.voc.sys.dao.CrmCommonDao.pagingFooter"/>
+    </select>
+    <select id="select" resultType="com.wigo.voc.example.model.ExampleVo">
+               SELECT <include refid="sqlCols"/>
+                 FROM TCMN_MENU
+        <include refid="sqlPkConditions"/>
+    </select>
+    <insert id="insert">
+                INSERT INTO TCMN_MENU (
+        <include refid="sqlCols"/>
+                 ) VALUES (
+                       #{menuCd}
+                     , #{menuNm}
+                     , #{menuUrl}
+                     , #{uprMenuCd}
+                     , #{rtMenuCd}
+                     , #{menuLevel}
+                     , #{menuSeq}
+                     , #{menuShowYn}
+                     , #{menuIcon}
+                     , #{menuAuthYn}
+                     , #{menuPopupYn}
+                     , #{menuPopupWdth}
+                     , #{menuPopupHght}
+                     , #{useYn}
+                     , #{regrId}
+                     , SYSDATE
+                     , #{regrId}
+                     , SYSDATE
+                     , #{sqlLogYn}
+                     , #{menuMemo}
+                 )
+    </insert>
+    <update id="update">
+               UPDATE TCMN_MENU
+                  SET MENU_NM             =         #{menuNm}
+                    , MENU_URL            =         #{menuUrl}
+                    , UPR_MENU_CD         =         #{uprMenuCd}
+                    , RT_MENU_CD          =         #{rtMenuCd}
+                    , MENU_LEVEL          =         #{menuLevel}
+                    , MENU_SEQ            =         #{menuSeq}
+                    , MENU_SHOW_YN        =         #{menuShowYn}
+                    , MENU_ICON           =         #{menuIcon}
+                    , MENU_AUTH_YN        =         #{menuAuthYn}
+                    , MENU_POPUP_YN       =         #{menuPopupYn}
+                    , MENU_POPUP_WDTH     =         #{menuPopupWdth}
+                    , MENU_POPUP_HGHT     =         #{menuPopupHght}
+                    , USE_YN              =         #{useYn}
+                    , AMDR_ID              =         #{regrId}
+                    , AMD_DT              =         SYSDATE
+                    , SQL_LOG_YN          =         #{sqlLogYn}
+                    , MENU_MEMO           =         #{menuMemo}
+        <include refid="sqlPkConditions"/>
+    </update>
+    <delete id="delete">
+               DELETE FROM TCMN_MENU
+        <include refid="sqlPkConditions"/>
+    </delete>
+</mapper>
