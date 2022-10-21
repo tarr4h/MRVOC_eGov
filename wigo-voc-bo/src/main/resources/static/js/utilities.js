@@ -673,6 +673,11 @@ if (!window["Utilities"]) {
             Utilities.ajax(opt);
             return retVal;
         },
+        reLoad : function() {
+            for(var i = 0;i<window.parent.length;i++){
+                window.parent[i].location.reload();
+            }
+        },
         getAjax : function(url, param, jsonBody, callback, option) {
             var nocaching;
             if (url.indexOf("?") > 0)
