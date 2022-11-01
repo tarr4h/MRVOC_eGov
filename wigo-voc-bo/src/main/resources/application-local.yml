@@ -30,7 +30,7 @@ spring:
 #    url: jdbc:oracle:thin:@s3.moara.org:6022/XE
 #    username: VOCsample
 #    password: VOCsample
-    # 변경감지테스트 dfdf
+    # 변경감지테스트 dfdfdfdafsdf12312
 
       
       
