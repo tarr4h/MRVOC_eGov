@@ -16,20 +16,13 @@ spring:
       maximum-pool-size: 3
     # Inmemory DB
     log-driver-class-name: oracle.jdbc.OracleDriver
-    driver-class-name: oracle.jdbc.OracleDriver
     log-url: jdbc:oracle:thin:@s3.moara.org:6022/XE
     log-username: newVoc
     log-password: newVoc
+    driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@s3.moara.org:6022/XE
     username: newVoc
     password: newVoc
-    #oracle cloud : 너무 느림
-#    log-url: jdbc:oracle:thin:@vvq2g82ukpxg5bpp_high?TNS_ADMIN=/Users/taewoohan/WorkFolder/MRVOC/MRVOC/wigo-voc-bo/wallet/Wallet_VVQ2G82UKPXG5BPP
-#    log-username: admin
-#    log-password: Wigomrvoc123
-#    url: jdbc:oracle:thin:@vvq2g82ukpxg5bpp_high?TNS_ADMIN=/Users/taewoohan/WorkFolder/MRVOC/MRVOC/wigo-voc-bo/wallet/Wallet_VVQ2G82UKPXG5BPP
-#    username: admin
-#    password: Wigomrvoc123
 #    version 1 db
 #    log-url: jdbc:oracle:thin:@s3.moara.org:6022/XE
 #    log-username: VOCsample
