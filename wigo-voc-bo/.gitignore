@@ -35,4 +35,5 @@ build/
 .pmd
 
 .yml
+*.yml
 application-local.yml
