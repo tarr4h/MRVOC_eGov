@@ -36,4 +36,5 @@ build/
 
 .yml
 *.yml
+**.yml
 application-local.yml
