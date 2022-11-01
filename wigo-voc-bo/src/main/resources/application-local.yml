@@ -23,7 +23,7 @@ spring:
     url: jdbc:oracle:thin:@s3.moara.org:6022/XE
     username: newVoc
     password: newVoc
-    #oracle clude : 너무 느림
+    #oracle cloud : 너무 느림
 #    log-url: jdbc:oracle:thin:@vvq2g82ukpxg5bpp_high?TNS_ADMIN=/Users/taewoohan/WorkFolder/MRVOC/MRVOC/wigo-voc-bo/wallet/Wallet_VVQ2G82UKPXG5BPP
 #    log-username: admin
 #    log-password: Wigomrvoc123

@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import com.wigo.voc.sys.mapper.CrmLogMapper;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.egovframe.rte.psl.dataaccess.mapper.MapperConfigurer;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
@@ -31,8 +32,14 @@ import com.zaxxer.hikari.HikariDataSource;
  * @Company : Copyright ⓒ wigo.ai. All Right Reserved
  */
 
+
+/**
+ * 22.11.01 : 전자정부프레임워크 Mapper 설정 적용(basePackageClasses)
+ */
 @Configuration
-@MapperScan(basePackages = {"com.wigo.voc"}, value = "최상위 패키지 경로", annotationClass = CrmLogMapper.class, sqlSessionFactoryRef = "logSqlSessionFactory")
+//@MapperScan(basePackages = {"com.wigo.voc"}, value = "최상위 패키지 경로", annotationClass = CrmLogMapper.class, sqlSessionFactoryRef = "logSqlSessionFactory")
+@MapperScan(basePackages = {"com.wigo.voc"}, value = "최상위 패키지 경로", annotationClass = CrmLogMapper.class, sqlSessionFactoryRef = "logSqlSessionFactory"
+	, basePackageClasses = MapperConfigurer.class)
 public class LogDatabaseConfig {
 	@Autowired
 	private ApplicationContext applicationContext;

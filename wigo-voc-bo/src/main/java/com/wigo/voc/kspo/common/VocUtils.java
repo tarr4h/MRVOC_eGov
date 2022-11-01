@@ -26,6 +26,8 @@ public class VocUtils extends BaseUtilities {
 
     @Autowired
     VocCorporationService cpService;
+
+
     public static int parseIntObject(Object obj){
         int returnObj = Integer.parseInt(String.valueOf(obj));
         return returnObj;

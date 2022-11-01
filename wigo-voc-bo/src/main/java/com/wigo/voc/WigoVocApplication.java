@@ -2,6 +2,7 @@ package com.wigo.voc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * 
@@ -27,6 +28,7 @@ public class WigoVocApplication {
 
 }
 
+// origin
 
 //public class CeragemCrmApplication {
 //
