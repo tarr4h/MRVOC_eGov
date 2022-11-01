@@ -1,6 +1,6 @@
 <%--
   Created by IntelliJ IDEA.
-  User: taewoohan  ㅇㅇ dddd
+  User: taewoohan
   Date: 2022/10/19
   Time: 10:03 AM
   To change this template use File | Settings | File Templates.
