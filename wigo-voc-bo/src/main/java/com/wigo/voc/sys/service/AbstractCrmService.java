@@ -7,6 +7,7 @@ import com.wigo.voc.common.model.BaseVo;
 import com.wigo.voc.common.model.EzMap;
 import com.wigo.voc.common.util.Utilities;
 import com.wigo.voc.sys.dao.ICrmDao;
+import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
 /**
  * <pre>
@@ -20,7 +21,7 @@ import com.wigo.voc.sys.dao.ICrmDao;
  * @Version : 1.0
  * @Company : Copyright ⓒ wigo.CO.LTD. All Right Reserved
  */
-public abstract class AbstractCrmService {
+public abstract class AbstractCrmService extends EgovAbstractServiceImpl {
 	public abstract ICrmDao getDao();
 
 	public <T> List<T> getList(Object param)  throws Exception{

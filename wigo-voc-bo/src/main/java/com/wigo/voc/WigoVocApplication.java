@@ -27,13 +27,3 @@ public class WigoVocApplication {
     }
 
 }
-
-// origin
-
-//public class CeragemCrmApplication {
-//
-//    public static void main(String[] args) {
-//        SpringApplication.run(CeragemCrmApplication.class, args);
-//    }
-//
-//}
